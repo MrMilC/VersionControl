@@ -32,6 +32,7 @@
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.lblFullName = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnWIF = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listUsers
@@ -69,11 +70,22 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnWIF
+            // 
+            this.btnWIF.Location = new System.Drawing.Point(264, 153);
+            this.btnWIF.Name = "btnWIF";
+            this.btnWIF.Size = new System.Drawing.Size(291, 29);
+            this.btnWIF.TabIndex = 6;
+            this.btnWIF.Text = "button1";
+            this.btnWIF.UseVisualStyleBackColor = true;
+            this.btnWIF.Click += new System.EventHandler(this.btnWIF_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 441);
+            this.Controls.Add(this.btnWIF);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblFullName);
             this.Controls.Add(this.txtFullName);
@@ -91,6 +103,7 @@
         private System.Windows.Forms.TextBox txtFullName;
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnWIF;
     }
 }
 
