@@ -33,6 +33,7 @@
             this.lblFullName = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnWIF = new System.Windows.Forms.Button();
+            this.btnDel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listUsers
@@ -80,11 +81,22 @@
             this.btnWIF.UseVisualStyleBackColor = true;
             this.btnWIF.Click += new System.EventHandler(this.btnWIF_Click);
             // 
+            // btnDel
+            // 
+            this.btnDel.Location = new System.Drawing.Point(264, 202);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(291, 29);
+            this.btnDel.TabIndex = 7;
+            this.btnDel.Text = "button1";
+            this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 441);
+            this.Controls.Add(this.btnDel);
             this.Controls.Add(this.btnWIF);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblFullName);
@@ -104,6 +116,7 @@
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnWIF;
+        private System.Windows.Forms.Button btnDel;
     }
 }
 
