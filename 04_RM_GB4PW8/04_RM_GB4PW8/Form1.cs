@@ -75,17 +75,9 @@ namespace _04_RM_GB4PW8
                 "Négyzetméter ár (Ft/m2)"
             };
 
-            for (int i=0;i<headers.Length;i++)
+            for (int i = 0 ; i < headers.Length ; i++)
             {
-                xlSheet.Cells[1, 1] = headers[0];
-                xlSheet.Cells[1, 2] = headers[1];
-                xlSheet.Cells[1, 3] = headers[2];
-                xlSheet.Cells[1, 4] = headers[3];
-                xlSheet.Cells[1, 5] = headers[4];
-                xlSheet.Cells[1, 6] = headers[5];
-                xlSheet.Cells[1, 7] = headers[6];
-                xlSheet.Cells[1, 8] = headers[7];
-                xlSheet.Cells[1, 9] = headers[8];
+                xlSheet.Cells[1, i+1] = headers[i];
             }
 
             object[,] values = new object[Flats.Count, headers.Length];
@@ -97,11 +89,14 @@ namespace _04_RM_GB4PW8
                 values[counter, 1] = f.Vendor;
                 values[counter, 2] = f.Side;
                 values[counter, 3] = f.District;
-                values[counter, 4] = f.Elevator;
+                if (f.Elevator)
+                    values[counter, 4] = "Van";
+                else
+                    values[counter, 4] = "Nincs";
                 values[counter, 5] = f.NumberOfRooms;
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
-                values[counter, 8] = "";
+                values[counter, 8] = "=1000000*" + GetCell(counter + 2, 7 + 1) + "/" + GetCell(counter + 2, 6 + 1);
                 counter++;
             }
 
@@ -125,6 +120,11 @@ namespace _04_RM_GB4PW8
             ExcelCoordinate += x.ToString();
 
             return ExcelCoordinate;
+        }
+
+        private void FormatTable()
+        {
+
         }
     }
 }
