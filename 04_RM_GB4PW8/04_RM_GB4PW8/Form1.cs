@@ -59,10 +59,10 @@ namespace _04_RM_GB4PW8
                 xlApp = null;
             }
         }
-
+        string[] headers;
         private void CreateTable()
         {
-            string[] headers = new string[]
+            headers = new string[]
             {
                 "Kód",
                 "Eladó",
@@ -103,6 +103,8 @@ namespace _04_RM_GB4PW8
             xlSheet.get_Range(
                 GetCell(2, 1),
                 GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
+
+            FormatTable();
         }
 
         private string GetCell(int x, int y)
@@ -124,7 +126,27 @@ namespace _04_RM_GB4PW8
 
         private void FormatTable()
         {
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
 
+            int lastRowID = xlSheet.UsedRange.Rows.Count;
+
+            Excel.Range DataRange = xlSheet.get_Range(GetCell(2, 1), GetCell(lastRowID, headers.Length));
+            DataRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            Excel.Range FirstColumn = xlSheet.get_Range(GetCell(1, 1), GetCell(lastRowID, 1));
+            FirstColumn.Font.Bold = true;
+            FirstColumn.Interior.Color = Color.LightYellow;
+
+            Excel.Range LastColumn = xlSheet.get_Range(GetCell(1, headers.Length), GetCell(lastRowID, headers.Length));
+            LastColumn.Interior.Color = Color.LightGreen;
+            LastColumn.NumberFormat = "0.00";
         }
     }
 }
