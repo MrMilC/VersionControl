@@ -44,6 +44,7 @@ namespace _05_RM_GB4PW8
             var nyereségekRendezve = (from x in Nyereségek
                                       orderby x
                                       select x).ToList();
+
             MessageBox.Show(nyereségekRendezve[nyereségekRendezve.Count() / 5].ToString());
         }
 
@@ -86,11 +87,11 @@ namespace _05_RM_GB4PW8
                                           orderby x
                                           select x).ToList();
 
-                int idoszak = 0;
+                int idoszak = 1;
                 foreach(var ny in nyereségekRendezve)
                 {
-                    idoszak++;
                     sw.WriteLine(idoszak+"|"+ny);
+                    idoszak++;
                 }
             }
         }
