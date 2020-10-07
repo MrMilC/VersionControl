@@ -30,6 +30,7 @@
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.btnWIF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -54,11 +55,22 @@
             this.dataGridView2.Size = new System.Drawing.Size(570, 547);
             this.dataGridView2.TabIndex = 1;
             // 
+            // btnWIF
+            // 
+            this.btnWIF.Location = new System.Drawing.Point(489, 565);
+            this.btnWIF.Name = "btnWIF";
+            this.btnWIF.Size = new System.Drawing.Size(260, 80);
+            this.btnWIF.TabIndex = 2;
+            this.btnWIF.Text = "Fájlba írás";
+            this.btnWIF.UseVisualStyleBackColor = true;
+            this.btnWIF.Click += new System.EventHandler(this.btnWIF_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1308, 571);
+            this.ClientSize = new System.Drawing.Size(1308, 657);
+            this.Controls.Add(this.btnWIF);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
@@ -73,6 +85,7 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button btnWIF;
     }
 }
 
