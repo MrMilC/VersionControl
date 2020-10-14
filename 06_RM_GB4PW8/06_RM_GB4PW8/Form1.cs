@@ -1,4 +1,5 @@
-﻿using _06_RM_GB4PW8.MnbServiceReference;
+﻿using _06_RM_GB4PW8.Entities;
+using _06_RM_GB4PW8.MnbServiceReference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +14,14 @@ namespace _06_RM_GB4PW8
 {
     public partial class Form1 : Form
     {
-        
+        BindingList<RateData> Rates = new BindingList<RateData>();
         public Form1()
         {
             InitializeComponent();
 
             WebService();
+
+            dataGridView1.DataSource = Rates;
         }
 
         private void WebService()
