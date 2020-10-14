@@ -17,18 +17,38 @@ namespace _06_RM_GB4PW8
     public partial class Form1 : Form
     {
         BindingList<RateData> Rates = new BindingList<RateData>();
+
+        BindingList<string> Currencies = new BindingList<string>();
         public Form1()
         {
             InitializeComponent();
 
-            string s;
-            s=WebService();
+            var mnbService = new MNBArfolyamServiceSoapClient();
+            var request = new GetCurrenciesRequestBody();
+            var response = mnbService.GetCurrencies(request);
+            var result = response.GetCurrenciesResult;
 
-            dataGridView1.DataSource = Rates;
+            var xml = new XmlDocument();
+            xml.LoadXml(result);
+            //foreach (XmlElement element in xml.DocumentElement)
+            //{
+            //    var currency=
+            //}
 
+            Console.WriteLine(result);
+
+            RefreshData();
+        }
+        private void RefreshData()
+        {
+            Rates.Clear();
+            string s = WebService();
             XMLprocessing(s);
 
+            dataGridView1.DataSource = Rates;
             DataDiagram();
+
+            //comboBox1.DataSource = Currencies;
         }
         private string WebService()
         {
@@ -36,9 +56,9 @@ namespace _06_RM_GB4PW8
 
             var request = new GetExchangeRatesRequestBody()
             {
-                currencyNames = "EUR",
-                startDate = "2020-01-01",
-                endDate = "2020-06-30"
+                currencyNames = comboBox1.SelectedItem.ToString(),
+                startDate = dateTimePicker1.Value.ToString(),
+                endDate = dateTimePicker2.Value.ToString()
             };
 
             var response = mnbService.GetExchangeRates(request);
@@ -65,6 +85,8 @@ namespace _06_RM_GB4PW8
                 rate.Date = DateTime.Parse(element.GetAttribute("date"));
         
                 var childElement = (XmlElement)element.ChildNodes[0];
+                if (childElement == null)
+                    continue;
                 rate.Currency = childElement.GetAttribute("curr");
         
                 var unit = decimal.Parse(childElement.GetAttribute("unit"));
@@ -73,7 +95,6 @@ namespace _06_RM_GB4PW8
                     rate.Value = value / unit;
             }
         }
-
         private void DataDiagram()
         {
             chartRateData.DataSource = Rates;
@@ -91,6 +112,15 @@ namespace _06_RM_GB4PW8
             chartArea.AxisX.MajorGrid.Enabled = false;
             chartArea.AxisY.MajorGrid.Enabled = false;
             chartArea.AxisY.IsStartedFromZero = false;
+        }
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }
