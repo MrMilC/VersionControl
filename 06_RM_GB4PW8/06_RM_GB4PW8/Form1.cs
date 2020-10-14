@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 
 namespace _06_RM_GB4PW8
@@ -26,6 +27,8 @@ namespace _06_RM_GB4PW8
             dataGridView1.DataSource = Rates;
 
             XMLprocessing(s);
+
+            DataDiagram();
         }
         private string WebService()
         {
@@ -69,6 +72,25 @@ namespace _06_RM_GB4PW8
                 if (unit != 0)
                     rate.Value = value / unit;
             }
+        }
+
+        private void DataDiagram()
+        {
+            chartRateData.DataSource = Rates;
+
+            var series = chartRateData.Series[0];
+            series.ChartType = SeriesChartType.Line;
+            series.XValueMember = "Date";
+            series.YValueMembers = "Value";
+            series.BorderWidth = 2;
+
+            var legend = chartRateData.Legends[0];
+            legend.Enabled = false;
+
+            var chartArea = chartRateData.ChartAreas[0];
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisY.IsStartedFromZero = false;
         }
     }
 }
