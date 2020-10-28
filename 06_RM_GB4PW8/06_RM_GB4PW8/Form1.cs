@@ -30,10 +30,17 @@ namespace _06_RM_GB4PW8
 
             var xml = new XmlDocument();
             xml.LoadXml(result);
-            //foreach (XmlElement element in xml.DocumentElement)
-            //{
-            //    var currency=
-            //}
+
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+                var currency = new RateData();
+                Currencies.Add(currency.ToString());
+
+                var childElement = (XmlElement)element.ChildNodes[0];
+                if (childElement == null)
+                    continue;
+                currency.Currency = childElement.GetAttribute("curr");
+            }
 
             Console.WriteLine(result);
 
@@ -48,7 +55,7 @@ namespace _06_RM_GB4PW8
             dataGridView1.DataSource = Rates;
             DataDiagram();
 
-            //comboBox1.DataSource = Currencies;
+            comboBox1.DataSource = Currencies;
         }
         private string WebService()
         {
