@@ -56,6 +56,7 @@ namespace _10_RM_GB4PW8
                           select p;
             if (winners.Count() > 0)
             {
+                btnStart.Visible = true;
                 winnerBrain = winners.FirstOrDefault().Brain.Clone();
                 gc.GameOver -= Gc_GameOver;
                 return;
@@ -76,6 +77,15 @@ namespace _10_RM_GB4PW8
                     gc.AddPlayer(b.Mutate());
             }
             gc.Start();
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            gc.ResetCurrentLevel();
+            gc.AddPlayer(winnerBrain.Clone());
+            gc.AddPlayer();
+            ga.Focus();
+            gc.Start(true);
         }
     }
 }
