@@ -21,6 +21,9 @@ namespace _10_RM_GB4PW8
 
             ga = gc.ActivateDisplay();
             this.Controls.Add(ga);
+
+            gc.AddPlayer();
+            gc.Start(true);
         }
     }
 }
